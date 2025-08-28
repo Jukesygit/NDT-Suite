@@ -11,28 +11,6 @@
             font-family: 'Inter', sans-serif;
             overflow: hidden;
         }
-        .image-background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('./Gemini_Generated_Image_jsnierjsnierjsni.png');
-            background-size: cover;
-            background-position: center;
-            z-index: -2;
-            transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            z-index: -1;
-            transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
         
         /* Main container for the entire app */
         #app-container {
@@ -73,10 +51,6 @@
     </style>
 </head>
 <body class="bg-black text-white">
-
-    <!-- Image Background -->
-    <div class="image-background" id="image-bg"></div>
-    <div class="overlay" id="image-overlay"></div>
 
     <!-- App Container -->
     <div id="app-container">
@@ -147,8 +121,6 @@
         const landingTitle = document.getElementById('landing-title');
         const landingDescription = document.getElementById('landing-description');
         const toolIframe = document.getElementById('tool-iframe');
-        const imageBg = document.getElementById('image-bg');
-        const imageOverlay = document.getElementById('image-overlay');
         const homeTool = tools.find(t => t.isHome);
 
         // --- FUNCTIONS ---
@@ -172,8 +144,6 @@
             
             // 1. Start all visual transitions immediately
             appContainer.classList.add('tool-active');
-            imageBg.style.opacity = '0';
-            imageOverlay.style.opacity = '0';
             landingContent.style.opacity = '0';
             
             // 2. Wait for the CSS transition to finish before loading the iframe
@@ -188,9 +158,7 @@
             // Start transition
             appContainer.classList.remove('tool-active');
             
-            // Show image and landing content
-            imageBg.style.opacity = '1';
-            imageOverlay.style.opacity = '1';
+            // Show landing content
             updateDescription(homeTool);
             landingContent.style.opacity = '1';
 
